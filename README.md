@@ -19,7 +19,7 @@ Les étudiants connectés peuvent consulter la liste des programmations des cour
 Comment Utiliser
 Installation :
 
-Clonez le dépôt 
+Clonez le dépôt : git clone https://github.com/LEUMENI/Education.git
 Installez les dépendances : pip install -r requirements.txt
 Configuration d'Odoo 11 :
 
