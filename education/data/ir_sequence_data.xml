@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+      
+        <record id="seq_coordination" model="ir.sequence">
+            <field name="name">Coordinations</field>
+            <field name="code">education.coordination</field>
+            <field name="prefix">PRO</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_calendrier" model="ir.sequence">
+            <field name="name">Calendrier</field>
+            <field name="code">education.calendar</field>
+            <field name="prefix">PRO</field>
+            <field name="padding">8</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        
+    </data>
+</odoo>

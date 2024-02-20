@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="education.view_classe_tree" model="ir.ui.view">
+        <field name="name">Classes</field>
+        <field name="model">education.classes</field>
+        <field name="arch" type="xml">
+        <tree string="Classes">
+            <field name="nom_batiment"/>
+            <field name="number"/>
+            <field name="capacite"/>
+            <field name="nom"/>
+
+        </tree>
+        </field>
+    </record>
+    <record id="education.view_classe_form" model="ir.ui.view">
+        <field name="name">Classe</field>
+        <field name="model">education.classes</field>
+        <field name="arch" type="xml">
+                <form string="classe">
+                    <sheet style="width: 50%;">
+                        <group string="Informations sur la classe " >
+                            <field name="nom_batiment" widget="textarea" style="width: 50%;"/>
+                            <field name="number" widget="textarea" style="width: 50%;"/>
+                            <field name="capacite" widget="textarea" style="width: 50%;"/>
+                            <field name="nom" widget="textarea" style="width: 50%;"/>
+                        </group>
+                    </sheet>     
+                </form>
+        </field>
+    </record>
+    <record id="education.action_classes" model="ir.actions.act_window">
+        <field name="name">Classes</field>
+        <field name="res_model">education.classes</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="education.view_classe_tree"/>
+    </record>
+
+</odoo>

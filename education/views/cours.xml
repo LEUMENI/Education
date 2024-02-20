@@ -1,0 +1,52 @@
+<odoo>
+    <record model="ir.ui.view" id="education_cours_list">
+        <field name="name">education.cours.list</field>
+        <field name="model">education.cours</field>
+        <field name="arch" type="xml">
+            <tree string="Cours">
+                <field name="titre"/>
+                <field name="code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_cours_form">
+        <field name="name">education.cours.form</field>
+        <field name="model">education.cours</field>
+        <field name="arch" type="xml">
+            <form string="Cours">
+                <sheet>
+                    <group string="Informations sur le cours ">  
+                                <field name="titre" widget="textarea" style="width: 50%;"/>    
+                                <field name="code" widget="textarea" style="width: 50%;"/>                    
+                                <field name="description" widget="textarea" style="width: 50%;"/>      
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+     <!-- Ajout de la vue avec le filtre par Titre -->
+    <record id="view_cours_list" model="ir.ui.view">
+        <field name="name">education.cours.list</field>
+        <field name="model">education.cours</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="titre" string="Titre" filter_domain="[('titre', 'ilike', self)]"/>
+                <field name="code" string="Code" filter_domain="[('code', 'ilike', self)]"/>
+                <field name="description" string="Description" filter_domain="[('description', 'ilike', self)]"/>
+                <group>
+                    <filter string="Titre" name="filter_by_titre" domain="[('titre', '!=', False)]"/>
+                    <filter string="Code" name="filter_by_code" domain="[('code', '!=', False)]"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="education.action_cours" model="ir.actions.act_window">
+        <field name="name">Cours</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="target">current</field>
+        <field name="res_model">education.cours</field>
+  </record>
+</odoo>
+<!-- import pdb; pdb.set_trace() -->

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="education.view_coordination_tree" model="ir.ui.view">
+        <field name="name">Coordinations</field>
+        <field name="model">education.coordination</field>
+        <field name="arch" type="xml">          
+        <tree string="Coordinations">
+            <field name="enseignant_ids"/>
+            <field name="niveau_id"/>
+            <field name="cours_ids"/>
+            <!-- <field name="cours_id"/> -->
+            <field name="classe_ids"/>
+            <field name="date_debut"/>
+            <field name="date_fin"/>
+            <field name="statut"/>
+        </tree>
+        </field>
+    </record>
+    <record id="education.view_coordination_form" model="ir.ui.view">
+        <field name="name">Coordination</field>
+        <field name="model">education.coordination</field>
+        <field name="arch" type="xml">
+                <form string="cordination">  
+                    <sheet>
+                        <group string="Informations sur la coordination des cours">
+                            <field name="enseignant_ids" widget="textarea" style="width: 50%;" />
+                            <field name="niveau_id" widget="textarea" style="width: 50%;"/>
+                            <field name="cours_ids" widget="many2many_tags" options="{'no_create': True}" style="width: 50%;"/>
+                            <field name="classe_ids" widget="textarea" style="width: 50%;"/>
+                            <!-- <field name="cours_id" widget="textarea" style="width: 50%;"/> -->
+                            <field name="date_debut" widget="textarea" style="width: 50%;"/>
+                            <field name="date_fin" widget="textarea" style="width: 50%;"/>
+                            <field name="statut" widget="textarea" style="width: 50%;"/>
+                        </group>
+                    </sheet>     
+                </form>
+        </field>
+    </record>
+
+
+     <record id="education.view_coordination_list" model="ir.ui.view">
+        <field name="name">education.coordination.list</field>
+        <field name="model">education.coordination</field>
+        <field name="arch" type="xml">
+                <search string="Coordination">
+                    <field name="enseignant_ids" string="Enseignant" filter_domain="[('enseignant_ids', 'ilike', self)]"/>
+                    <field name="cours_ids" string="Cours" filter_domain="[('cours_ids','ilike', self)]"/>
+                    <field name="classe_ids" string="Classe" filter_domain="[('classe_id', 'ilike', self)]"/>
+                </search>
+                <group>
+                    <filter string="Filtrer par Enseignant" name="filter_by_enseignant" domain="[('enseignant_ids', '!=', False)]"/>
+                    <filter string="Filtrer par Cours" name="filter_by_cours" domain="[('cours_ids', '!=', False)]"/>
+                    <filter string="Filtrer par Classe" name="filter_by_classe" domain="[('classe_ids', '!=', False)]"/>
+                </group>
+        </field>
+    </record>
+
+    <record id="education.action_coordination" model="ir.actions.act_window">
+        <field name="name">Coordinations</field>
+        <field name="res_model">education.coordination</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="education.view_coordination_tree"/>
+        <!-- <field name="target">current_menu</field> -->
+    </record>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="education.etudiant_list">
+        <field name="name">education.etudiant.list</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree string="Etudiants">
+                <field name="name"/>
+                <field name="matricule"/>
+                <field name="niveau_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="education.action_etudiant" model="ir.actions.act_window">
+        <field name="name">Etudiants</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="education.view_users_form_inherited"/>
+        <!-- <field name="view_ids" eval="[(0, 0, {'view_id': ref('education.etudiant_list'), 'view_mode': 'tree'})]"/> -->
+        <field name="domain">[('type_utilisateur', '=', 'etudiant')]</field>
+        <field name="context">{'default_type_utilisateur': 'etudiant'}</field>
+    </record>
+</odoo>

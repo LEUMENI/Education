@@ -1,0 +1,25 @@
+<odoo>
+    <record id="education.view_users_form_inherited" model="ir.ui.view">
+        <field name="name">res.users.form.inherited</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <field name="login" position="after">
+                <group>
+                    <field name="type_utilisateur"/>
+                    <field name="matricule" attrs="{'invisible': [('type_utilisateur', '=', 'enseignant')]}" />
+                    <field name="niveau_id" attrs="{'invisible': [('type_utilisateur', '=', 'enseignant')]}" />
+                    <field name="tel" attrs="{'invisible': [('type_utilisateur', '=', 'etudiant')]}" />
+                    <field name="grade" attrs="{'invisible': [('type_utilisateur', '=', 'etudiant')]}" />
+                    <field name="cours_ids" widget="many2many_tags" attrs="{'invisible': [('type_utilisateur', '=', 'etudiant')]}"/>
+                </group>
+            </field>
+        </field>
+    </record>
+
+    <record id="education.action_etulisateur" model="ir.actions.act_window">
+        <field name="name">Utilisateurs</field>
+        <field name="res_model">res.users</field>
+        <field name="view_id" ref="education.view_users_form_inherited"/>
+    </record>
+</odoo>

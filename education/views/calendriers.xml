@@ -1,0 +1,38 @@
+<odoo>
+    <record id="education.view_calendrier_calendar" model="ir.ui.view">
+        <field name="name">Calendrier</field>
+        <field name="model">education.calendar</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendrier"  date_start="date_debut">
+                <field name="enseignant_ids"/>
+                 <field name="niveau_id"/>
+                <field name="cours_ids"/>
+                <field name="classe_ids"/>
+                <field name="date_debut"/>
+                <field name="date_fin"/>
+                <field name="statut"/>
+                
+            </calendar>
+            
+        </field>
+    </record>
+    
+    <record id="education.view_calendrier_list" model="ir.ui.view">
+        <field name="name">education.calender.list</field>
+        <field name="model">education.calendar</field>
+        <field name="arch" type="xml">
+                <search string="Calendrier" >
+                    
+                    <filter string="Mes cours" name="filter_my_courses" domain="[('enseignant_ids', '=', uid)]"/> 
+                    <field name="niv_final" invisible="1"/>
+                    <filter string="Cours programmés" name ="filter_my_program" domain="[('niveau_id', '=', niv_final)]"/>  
+                </search>
+        </field>
+    </record>
+    
+    <record id="education.action_calendrier" model="ir.actions.act_window" >
+        <field name="name">Calendrier de programmarion des cours</field>
+        <field name="res_model">education.calendar</field>
+        <field name="view_mode">calendar</field>   
+    </record>
+</odoo>
